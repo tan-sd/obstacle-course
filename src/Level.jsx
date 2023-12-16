@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { RigidBody, CuboidCollider } from "@react-three/rapier";
 import { useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import { Float, Text, useGLTF } from "@react-three/drei";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -25,6 +25,20 @@ const wallMaterial = new THREE.MeshStandardMaterial({
 function BlockStart({ position = [0, 0, 0] }) {
     return (
         <group position={position}>
+            <Float floatIntensity={0.25} rotationIntensity={0.25}>
+                <Text
+                    font="./bebas-neue-v9-latin-regular.woff"
+                    scale={0.5}
+                    maxWidth={0.25}
+                    lineHeight={0.75}
+                    textAlign="right"
+                    position={[0.75, 0.65, 0]}
+                    rotation-y={-0.25}
+                >
+                    Obstacle Course
+                    <meshBasicMaterial toneMapped={false} />
+                </Text>
+            </Float>
             <mesh
                 geometry={boxGeometry}
                 material={floor1Material}
@@ -168,12 +182,36 @@ function BlockAxe({ position = [0, 0, 0] }) {
 }
 
 function BlockEnd({ position = [0, 0, 0] }) {
-    const hamburger = useGLTF("./hamburger.glb");
-    hamburger.scene.children.forEach((mesh) => {
+    // const hamburger = useGLTF("./hamburger.glb");
+    // hamburger.scene.children.forEach((mesh) => {
+    //     mesh.castShadow = true;
+    // });
+
+    const trophy = useGLTF("./trophy.glb");
+    trophy.scene.children.forEach((mesh) => {
         mesh.castShadow = true;
+    });
+
+    trophy.scene.traverse((child) => {
+        if (child.isMesh && child.material.name === "Material.001") {
+            child.material.metalness = 0;
+            child.material.color.set("FFA300");
+        }
+        if (child.isMesh && child.material.name === "Material.002") {
+            child.material.metalness = 0;
+            child.material.color.set("FFFFFF");
+        }
     });
     return (
         <group position={position}>
+            <Text
+                font="./bebas-neue-v9-latin-regular.woff"
+                scale={1}
+                position={[0, 2.25, 2]}
+            >
+                FINISH
+                <meshBasicMaterial toneMapped={false} />
+            </Text>
             <mesh
                 geometry={boxGeometry}
                 material={floor1Material}
@@ -188,7 +226,8 @@ function BlockEnd({ position = [0, 0, 0] }) {
                 restitution={0.2}
                 friction={0}
             >
-                <primitive object={hamburger.scene} scale={0.2} />
+                {/* <primitive object={hamburger.scene} scale={0.2} /> */}
+                <primitive object={trophy.scene} scale={0.6} />
             </RigidBody>
         </group>
     );
@@ -244,7 +283,7 @@ export function Level({
 
         return blocks;
     }, [count, types]);
-    console.log(blocks);
+    // console.log(blocks);
     return (
         <>
             <BlockStart position={[0, 0, 0]} />
