@@ -43,19 +43,29 @@ export default function Interface() {
                     Restart
                 </div>
             )}
-            <div className="controls">
-                <div className="raw">
-                    <div className={`key ${forward ? "active" : ""}`}></div>
+            {(phase === "playing" || phase === "ready") && (
+                <div className="controls">
+                    <div className="raw">
+                        <div className={`key ${forward ? "active" : ""}`}></div>
+                    </div>
+                    <div className="raw">
+                        <div
+                            className={`key ${leftward ? "active" : ""}`}
+                        ></div>
+                        <div
+                            className={`key ${backward ? "active" : ""}`}
+                        ></div>
+                        <div
+                            className={`key ${rightward ? "active" : ""}`}
+                        ></div>
+                    </div>
+                    <div className="raw">
+                        <div
+                            className={`key large ${jump ? "active" : ""}`}
+                        ></div>
+                    </div>
                 </div>
-                <div className="raw">
-                    <div className={`key ${leftward ? "active" : ""}`}></div>
-                    <div className={`key ${backward ? "active" : ""}`}></div>
-                    <div className={`key ${rightward ? "active" : ""}`}></div>
-                </div>
-                <div className="raw">
-                    <div className={`key large ${jump ? "active" : ""}`}></div>
-                </div>
-            </div>
+            )}
         </div>
     );
 }
