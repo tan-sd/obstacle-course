@@ -3,6 +3,8 @@ import { RigidBody, CuboidCollider } from "@react-three/rapier";
 import { useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Float, Text, useGLTF } from "@react-three/drei";
+import ExplosionConfetti from "./Confetti";
+import useGame from "./stores/useGame";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -187,6 +189,8 @@ function BlockEnd({ position = [0, 0, 0] }) {
     //     mesh.castShadow = true;
     // });
 
+    const phase = useGame((state) => state.phase);
+
     const trophy = useGLTF("./trophy.glb");
     trophy.scene.children.forEach((mesh) => {
         mesh.castShadow = true;
@@ -229,6 +233,15 @@ function BlockEnd({ position = [0, 0, 0] }) {
                 {/* <primitive object={hamburger.scene} scale={0.2} /> */}
                 <primitive object={trophy.scene} scale={0.6} />
             </RigidBody>
+            {phase === "ended" && (
+                <ExplosionConfetti
+                    rate={3}
+                    fallingHeight={9}
+                    amount={50}
+                    enableShadows
+                    isExploding
+                />
+            )}
         </group>
     );
 }

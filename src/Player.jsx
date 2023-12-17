@@ -17,6 +17,7 @@ export default function Player() {
     const end = useGame((state) => state.end);
     const restart = useGame((state) => state.restart);
     const blocksCount = useGame((state) => state.blocksCount);
+    const phase = useGame((state) => state.phase);
 
     const reset = () => {
         body.current.setTranslation({ x: 0, y: 1, z: 0 });
@@ -102,27 +103,29 @@ export default function Player() {
         const impulseStrength = 0.6 * delta;
         const torqueStrength = 0.2 * delta;
 
-        if (forward) {
-            impulse.z -= impulseStrength;
-            torque.x -= torqueStrength;
-        }
+        if (phase !== "ended") {
+            if (forward) {
+                impulse.z -= impulseStrength;
+                torque.x -= torqueStrength;
+            }
 
-        if (rightward) {
-            impulse.x += impulseStrength;
-            torque.z -= torqueStrength;
-        }
+            if (rightward) {
+                impulse.x += impulseStrength;
+                torque.z -= torqueStrength;
+            }
 
-        if (backward) {
-            impulse.z += impulseStrength;
-            torque.x += torqueStrength;
-        }
+            if (backward) {
+                impulse.z += impulseStrength;
+                torque.x += torqueStrength;
+            }
 
-        if (leftward) {
-            impulse.x -= impulseStrength;
-            torque.z += torqueStrength;
+            if (leftward) {
+                impulse.x -= impulseStrength;
+                torque.z += torqueStrength;
+            }
+            body.current.applyImpulse(impulse);
+            body.current.applyTorqueImpulse(torque);
         }
-        body.current.applyImpulse(impulse);
-        body.current.applyTorqueImpulse(torque);
     });
 
     return (
