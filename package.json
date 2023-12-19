@@ -12,9 +12,14 @@
     "vite": "^4.5.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-three/drei": "^9.88.7",
     "@react-three/fiber": "^8.15.8",
     "@react-three/rapier": "^1.2.1",
+    "firebase": "^10.7.1",
     "r3f-perf": "^7.1.2",
     "react": "18.2",
     "react-dom": "18.2",
