@@ -41,7 +41,7 @@ export default function Player() {
         const unsubscribeReset = useGame.subscribe(
             (state) => state.phase,
             (value) => {
-                if (value === "ready") reset();
+                if (value === "ready" || value === "register") reset();
             }
         );
 
@@ -103,7 +103,7 @@ export default function Player() {
         const impulseStrength = 0.6 * delta;
         const torqueStrength = 0.2 * delta;
 
-        if (phase !== "ended") {
+        if (phase !== "ended" && phase !== "register") {
             if (forward) {
                 impulse.z -= impulseStrength;
                 torque.x -= torqueStrength;
