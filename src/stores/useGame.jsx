@@ -4,9 +4,19 @@ import { subscribeWithSelector } from "zustand/middleware";
 export default create(
     subscribeWithSelector((set) => {
         return {
-            blocksCount: 10,
+            blocksCount: 20,
 
-            phase: "ready",
+            nickname: "",
+
+            phase: "register",
+
+            register: (inputValue) => {
+                set((state) => {
+                    if (state.phase === "register")
+                        return { phase: "ready", nickname: inputValue };
+                    return {};
+                });
+            },
 
             start: () => {
                 set((state) => {
@@ -30,6 +40,19 @@ export default create(
                 set((state) => {
                     if (state.phase === "playing")
                         return { phase: "ended", endTime: Date.now() };
+
+                    return {};
+                });
+            },
+
+            changeToRegister: () => {
+                set((state) => {
+                    if (
+                        state.phase === "ended" ||
+                        state.phase === "playing" ||
+                        state.phase === "ready"
+                    )
+                        return { phase: "register" };
 
                     return {};
                 });
