@@ -60,7 +60,6 @@ function BlockSpinner({ position = [0, 0, 0] }) {
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        // console.log(time);
 
         const rotation = new THREE.Quaternion();
         rotation.setFromEuler(new THREE.Euler(0, time * speed, 0));
@@ -101,7 +100,6 @@ function BlockLimbo({ position = [0, 0, 0] }) {
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        // console.log(time);
 
         const y = Math.sin(time + timeOffset) + 1.15;
         obstacle.current.setNextKinematicTranslation({
@@ -145,7 +143,6 @@ function BlockAxe({ position = [0, 0, 0] }) {
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        // console.log(time);
 
         const x = Math.sin(time + timeOffset) * 1.25;
         obstacle.current.setNextKinematicTranslation({
@@ -199,11 +196,11 @@ function BlockEnd({ position = [0, 0, 0] }) {
     trophy.scene.traverse((child) => {
         if (child.isMesh && child.material.name === "Material.001") {
             child.material.metalness = 0;
-            child.material.color.set("FFA300");
+            child.material.color.set("#FFA300");
         }
         if (child.isMesh && child.material.name === "Material.002") {
             child.material.metalness = 0;
-            child.material.color.set("FFFFFF");
+            child.material.color.set("#FFFFFF");
         }
     });
     return (
@@ -296,7 +293,6 @@ export function Level({
 
         return blocks;
     }, [count, types]);
-    // console.log(blocks);
     return (
         <>
             <BlockStart position={[0, 0, 0]} />
