@@ -138,7 +138,7 @@ export default function Interface() {
 
     return (
         <div className="interface">
-            {phase === "ready" && (
+            {phase !== "register" && (
                 <div ref={time} className="time">
                     0.00
                 </div>
