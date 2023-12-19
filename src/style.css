@@ -10,8 +10,8 @@ body,
 }
 
 @font-face {
-    font-family: bebasNeue;
-    src: url("../public/bebas-neue-v9-latin-regular.woff");
+    font-family: pressstart2play;
+    src: url("../public/pressstart2p-vav7.ttf");
 }
 
 .interface {
@@ -21,7 +21,33 @@ body,
     width: 100%;
     height: 100%;
     pointer-events: none;
-    font-family: bebasNeue, cursive;
+    font-family: pressstart2play;
+}
+
+.nicknameContainer {
+    display: flex;
+    position: absolute;
+    bottom: 4%;
+    left: 2%;
+    font-size: 3vh;
+    gap: 10px;
+}
+
+.nickname {
+    background-color: #00000033;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.5vh;
+}
+
+.changeNickname {
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+    cursor: pointer;
+    font-size: 2.5vh;
 }
 
 .time {
@@ -29,7 +55,7 @@ body,
     top: 4%;
     left: 2%;
     color: #ffffff;
-    font-size: 10vh;
+    font-size: 6vh;
     background: #00000033;
     padding: 10px;
     text-align: center;
@@ -45,25 +71,32 @@ body,
     width: 500px;
     border-radius: 10px;
     color: #ffffff;
-    font-size: 80px;
+    font-size: 40px;
     background: #00000033;
+    padding: 20px;
+    user-select: none;
+}
+
+.entry {
+    display: flex;
+    margin: 10px;
+    background-color: #00000033;
+    border-radius: 10px;
     padding: 10px;
+    pointer-events: auto;
 }
 
-.first,
-.second,
-.third {
-    display: flex;
-    margin: 10px;
-    background-color: #00000033;
-    border-radius: 10px;
+.entry:hover {
+    background-color: #0000007d;
 }
 
-.rest {
-    display: flex;
-    margin: 10px;
-    background-color: #00000033;
-    border-radius: 10px;
+.highlighted {
+    border: 2px solid white;
+}
+
+.disabled {
+    pointer-events: none !important;
+    opacity: 0.5;
 }
 
 .index {
@@ -111,22 +144,30 @@ body,
 
 .restart,
 .board,
-.position {
-    font-size: 35px;
+.position,
+.submit {
+    font-size: 15px;
 }
 
-.restart {
+.restart,
+.submit {
     pointer-events: auto;
     cursor: pointer;
     display: inline-block;
     position: relative;
     background-color: #00000033;
     border-radius: 10px;
-    padding: 10px;
+    padding: 15px;
 }
 
-.restart:hover {
+.restart:hover,
+.submit:hover {
     background-color: #0000007d;
+}
+
+.submit {
+    margin-right: 50px;
+    width: 90px;
 }
 
 .input {
@@ -136,7 +177,7 @@ body,
     border-radius: 4px;
     pointer-events: auto;
     color: #ffffff;
-    font-family: bebasNeue;
+    font-family: pressstart2play;
     font-size: 35px;
     display: flex;
     align-items: center;
@@ -165,10 +206,53 @@ body,
     justify-content: center;
     align-items: center;
     margin: 16px 0px 0px 10px;
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 .enterBtn.active {
     background-color: #0000007d;
+}
+
+.register {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+}
+
+.registerBtn {
+    background: none;
+    border: none;
+    font-family: pressstart2play;
+    background-color: #00000033;
+    color: #ffffff;
+    font-size: 1.5vh;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    width: 150px;
+}
+
+.registerBtn:disabled {
+    background-color: #00000033;
+    color: #ffffff47;
+}
+
+.registerBtn:enabled:hover {
+    background-color: #0000007d;
+    cursor: pointer;
+}
+
+.registerInput {
+    font-size: 1.5vh;
+    font-family: pressstart2play;
+    padding: 10px;
+    width: 150px;
 }
 
 .controls {
