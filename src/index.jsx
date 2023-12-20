@@ -7,6 +7,12 @@ import Interface from "./Interface.jsx";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
+console.log(
+    "%cGithub Repository: https://github.com/tan-sd/obstacle-course",
+    "color: #9370DB"
+);
+console.log("%c— Obstacle Course", "color: #777777");
+
 root.render(
     <KeyboardControls
         map={[
