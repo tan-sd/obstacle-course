@@ -22,6 +22,7 @@
     "firebase": "^10.7.1",
     "r3f-perf": "^7.1.2",
     "react": "18.2",
+    "react-device-detect": "^2.2.3",
     "react-dom": "18.2",
     "three": "^0.158.0",
     "zustand": "4.4"
