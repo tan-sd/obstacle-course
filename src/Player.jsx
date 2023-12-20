@@ -63,7 +63,7 @@ export default function Player() {
         });
 
         subscribeKeys(() => {
-            console.log("any key down");
+            // console.log("any key down");
         });
 
         return () => {
