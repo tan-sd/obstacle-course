@@ -8,7 +8,9 @@ import {
     faSpinner,
     faCheck,
     faPenToSquare,
+    faFaceSadTear,
 } from "@fortawesome/free-solid-svg-icons";
+import { isMobile } from "react-device-detect";
 
 export default function Interface() {
     const forward = useKeyboardControls((state) => state.forward);
@@ -143,24 +145,37 @@ export default function Interface() {
                     0.00
                 </div>
             )}
-            {phase === "register" && (
-                <div className="register">
-                    <input
-                        className="registerInput"
-                        type="text"
-                        placeholder="Nickname"
-                        maxLength={10}
-                        value={inputValue}
-                        onChange={handleInputChange}
-                    />
-                    <button
-                        className="registerBtn"
-                        onClick={() => register(inputValue)}
-                        disabled={!inputValue.trim()}
-                    >
-                        Let's go!
-                    </button>
-                </div>
+            {!isMobile ? (
+                phase === "register" && (
+                    <div className="register">
+                        <input
+                            className="registerInput"
+                            type="text"
+                            placeholder="Nickname"
+                            maxLength={10}
+                            value={inputValue}
+                            onChange={handleInputChange}
+                        />
+                        <button
+                            className="registerBtn"
+                            onClick={() => register(inputValue)}
+                            disabled={!inputValue.trim()}
+                        >
+                            Let's go!
+                        </button>
+                    </div>
+                )
+            ) : (
+                    <div className="mobileNotice">
+                        <FontAwesomeIcon icon={faFaceSadTear} className="mobileNoticeIcon" />
+                        <div>
+                            Sorry! This game is not optimised for mobile
+                            devices.
+                        </div>
+                        <div>
+                            Please play on a desktop for the best experience!
+                        </div>
+                    </div>
             )}
             {phase === "ended" && (
                 <div className="scoreboard">

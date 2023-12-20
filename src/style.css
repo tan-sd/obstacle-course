@@ -282,3 +282,24 @@ body,
 .controls .key.active {
     background: #ffffff99;
 }
+
+.mobileNotice {
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    width: 300px;
+    text-align: center;
+    line-height: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.mobileNoticeIcon {
+    font-size: 50px;
+}
